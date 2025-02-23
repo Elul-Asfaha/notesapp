@@ -1,7 +1,8 @@
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
-import userRoutes from "./routes/userRoutes";
+import registerRoute from "./routes/auth/signup/registerRoute";
+import loginRoute from "./routes/auth/signin/loginRoute";
 require("dotenv").config();
 const app = express();
 app.use(express.json());
@@ -16,9 +17,9 @@ mongoose
 app.get("/", (req, res) => {
     res.send("Conntected");
 });
-console.log("here");
 
-app.use("/users", userRoutes);
+app.use("/", registerRoute);
+app.use("/", loginRoute);
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

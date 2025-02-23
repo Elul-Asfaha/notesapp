@@ -1,0 +1,16 @@
+{
+    "formFields": [
+        {
+            "label": "Username",
+            "name": "username",
+            "type": "text"
+        },
+
+        {
+            "label": "Password",
+            "name": "password",
+            "type": "text"
+        }
+    ],
+    "button": "Sign In"
+}
