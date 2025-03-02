@@ -1,22 +1,23 @@
 "use client";
 import Navbar from "@/components/navbar/navbar";
 import FormConstructor from "@/formConstructor/formConstructor";
-import registerSchema from "@/schema/register";
 import { signInTypes } from "@/types/formDataTypes";
 import { useFormik } from "formik";
 import signinData from "@/formData/auth/signin.json";
 import { toast } from "sonner";
 import { signinEndpoint } from "@/endpoints";
+import { useRouter } from "next/navigation";
+import signInSchema from "@/schema/signInSchema";
 
 const Page = () => {
+    const router = useRouter();
     const initialValues = {
         username: "",
         password: "",
     };
-    const handleSignUp = async (data: signInTypes) => {
+    const handleeSignIn = async (data: signInTypes) => {
         const { username, password } = data;
-
-        console.log(data);
+        console.log("here", data);
         try {
             const response = await fetch(signinEndpoint, {
                 method: "POST",
@@ -26,7 +27,8 @@ const Page = () => {
                 body: JSON.stringify({ username, password }),
             });
             if (response.status === 200) {
-                toast.success("");
+                toast.success("Welcome");
+                router.push("/dashboard");
             }
         } catch (err) {
             console.log(err);
@@ -44,8 +46,8 @@ const Page = () => {
         touched,
     } = useFormik({
         initialValues: initialValues,
-        onSubmit: handleSignUp,
-        validationSchema: registerSchema,
+        onSubmit: handleeSignIn,
+        validationSchema: signInSchema,
     });
 
     return (

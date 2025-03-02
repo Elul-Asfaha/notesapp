@@ -1,6 +1,6 @@
 "use client";
 import Navbar from "@/components/navbar/navbar";
-import registerSchema from "@/schema/register";
+import registerSchema from "@/schema/registerSchema";
 import { registerTypes } from "@/types/formDataTypes";
 import { useFormik } from "formik";
 
